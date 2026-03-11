@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaffe Arkitektur & Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__container">
+      <a href="index.html" class="header__logo-link">
+        <img src="images/Full_logo_hvit.png" alt="Kaffe Logo" class="header__logo header__logo--desktop">
+        <img src="images/Komprimert_logo_svart.png" alt="Kaffe Logo" class="header__logo header__logo--mobile">
+      </a>
+      <nav class="header__nav-wrapper">
+        <ul class="header__nav header__nav--center" id="navMenu">
+          <li><a href="studio.html" class="header__nav-link">Om oss</a></li>
+          <li><a href="works.html" class="header__nav-link">Prosjekter</a></li>
+          <li><a href="contact.html" class="header__nav-link header__nav-link--mobile">Ta kontakt</a></li>
+        </ul>
+        <button class="header__menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+      <a href="contact.html" class="header__nav-link header__nav-link--right">Ta kontakt</a>
+    </div>
+  </header>
+
+  <!-- Hero Section with Video -->
+  <section class="hero">
+    <video class="hero__video" autoplay muted loop playsinline>
+      <source src="images/nettside loop.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <canvas class="hero__video-canvas"></canvas>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <h1 class="hero__title">Vi tror at god arkitektur starter med en kopp <span class="hero__title--bold">kaffe</span>.</h1>
+    </div>
+  </section>
+
+  <!-- News Section -->
+  <section class="news">
+    <div class="container">
+      <div class="news__header">
+        <h2 class="news__title">Aktuelt</h2>
+      </div>
+      <div class="news__grid" id="newsGrid">
+        <article class="news-item">
+          <div class="news-item__date">2025</div>
+          <h3 class="news-item__title">New Project Launch</h3>
+          <p class="news-item__description">
+            We're excited to announce the completion of our latest architectural project, combining modern design with sustainable practices.
+          </p>
+          <a href="#" class="news-item__link">Read more →</a>
+        </article>
+        <article class="news-item">
+          <div class="news-item__date">2024</div>
+          <h3 class="news-item__title">Award Recognition</h3>
+          <p class="news-item__description">
+            Our team has been recognized for excellence in architectural design at this year's industry awards ceremony.
+          </p>
+          <a href="#" class="news-item__link">Read more →</a>
+        </article>
+        <article class="news-item">
+          <div class="news-item__date">2024</div>
+          <h3 class="news-item__title">Studio Expansion</h3>
+          <p class="news-item__description">
+            We're growing! Kaffe is expanding its team and capabilities to take on larger and more diverse projects.
+          </p>
+          <a href="#" class="news-item__link">Read more →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__container">
+        <div class="footer__section">
+          <h4 class="footer__section-title">Contact</h4>
+          <ul class="footer__links">
+            <li><a href="mailto:info@kaffe.no" class="footer__link">info@kaffe.no</a></li>
+            <li><a href="tel:+4712345678" class="footer__link">+47 12 34 56 78</a></li>
+          </ul>
+        </div>
+        <div class="footer__section footer__section--center">
+          <h4 class="footer__section-title">Follow Us</h4>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook">
+              <img src="images/FB_icon.webp" alt="Facebook" class="footer__social-icon">
+            </a>
+            <a href="#" aria-label="Instagram">
+              <img src="images/Ig_icon.webp" alt="Instagram" class="footer__social-icon">
+            </a>
+          </div>
+        </div>
+        <div class="footer__section footer__section--right">
+          <div class="footer__certifications">
+            <img src="images/nal_liggende_rgb_pos.png" alt="NAL Logo" class="footer__cert-logo footer__cert-logo--nal">
+            <img src="images/horisontal.png" alt="Certification Logo" class="footer__cert-logo footer__cert-logo--horisontal">
+          </div>
+        </div>
+      </div>
+      <div class="footer__copyright">
+        <p>&copy; 2025 Kaffe Arkitektur & Design.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
+

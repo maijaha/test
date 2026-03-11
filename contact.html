@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ta kontakt - Kaffe Arkitektur og Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__container">
+      <a href="index.html" class="header__logo-link">
+        <img src="images/Full_logo_hvit.png" alt="Kaffe Logo" class="header__logo header__logo--desktop">
+        <img src="images/Komprimert_logo_svart.png" alt="Kaffe Logo" class="header__logo header__logo--mobile">
+      </a>
+      <nav class="header__nav-wrapper">
+        <ul class="header__nav header__nav--center" id="navMenu">
+          <li><a href="studio.html" class="header__nav-link">Om oss</a></li>
+          <li><a href="works.html" class="header__nav-link">Prosjekter</a></li>
+          <li><a href="contact.html" class="header__nav-link header__nav-link--mobile">Ta kontakt</a></li>
+        </ul>
+        <button class="header__menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+      <a href="contact.html" class="header__nav-link header__nav-link--right">Ta kontakt</a>
+    </div>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="contact" style="padding-top: calc(var(--spacing-xl) + 80px); padding-bottom: var(--spacing-xl); min-height: calc(100vh - 80px);">
+    <div class="container">
+      <div class="contact__content">
+        <h2 class="contact__title">Ta kontakt</h2>
+        <p class="contact__description">
+          Ta kontakt med oss for å diskutere ditt neste prosjekt. Vi er her for å hjelpe deg med å realisere din visjon.
+        </p>
+        <div class="contact__info">
+          <div class="contact__item">
+            <h3 class="contact__item-title">E-post</h3>
+            <a href="mailto:info@kaffe.no" class="contact__link">info@kaffe.no</a>
+          </div>
+          <div class="contact__item">
+            <h3 class="contact__item-title">Telefon</h3>
+            <a href="tel:+4712345678" class="contact__link">+47 12 34 56 78</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="main.js"></script>
+</body>
+</html>
+

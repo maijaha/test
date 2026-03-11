@@ -1,0 +1,1208 @@
+/* ============================================
+   CSS VARIABLES & RESET
+   ============================================ */
+
+:root {
+  /* Colors */
+  --color-primary: #000000;
+  --color-secondary: #ffffff;
+  --color-accent: #f5f5f5;
+  --color-text: #1a1a1a;
+  --color-text-light: #666666;
+  
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-size-base: 16px;
+  --font-size-h1: clamp(2.5rem, 5vw, 4rem);
+  --font-size-h2: clamp(1.75rem, 3vw, 2.5rem);
+  --font-size-h3: clamp(1.25rem, 2vw, 1.75rem);
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+  
+  /* Layout */
+  --container-max-width: 1400px;
+  --container-padding: clamp(1rem, 4vw, 3rem);
+  
+  /* Transitions */
+  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-secondary);
+  overflow-x: hidden;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--transition-base);
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000; /* Very high z-index to ensure it's above everything */
+  background-color: transparent;
+  padding: var(--spacing-md) 0;
+  transition: none; /* No background transitions - completely transparent */
+  /* Apply blend mode to header container like Avrix website */
+  mix-blend-mode: exclusion;
+  isolation: isolate; /* Blend against hero canvas */
+}
+
+/* Responsive edge spacing just for header */
+.header .container {
+  max-width: min(1600px, 100%);
+  padding-left: clamp(1rem, 4vw, 5rem);
+  padding-right: clamp(1rem, 4vw, 5rem);
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10001; /* Very high z-index to ensure it's above everything */
+  isolation: auto; /* Ensure no isolation that would prevent blending */
+  /* Blend mode applied via CSS */
+}
+
+.header__logo {
+  height: 40px;
+  width: auto;
+  transition: filter var(--transition-base);
+}
+
+.header__logo--desktop {
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .header__logo--desktop {
+    height: clamp(46px, 2.4vw, 72px);
+  }
+}
+
+.header__logo--mobile {
+  display: none;
+}
+
+.header__logo-link {
+  position: relative;
+  z-index: 10002; /* Very high z-index to ensure it's above everything */
+  pointer-events: auto; /* Ensure logo link is clickable */
+}
+
+/* Logo inherits blend mode from header */
+.header__logo--desktop {
+  position: relative;
+  z-index: 10003; /* Very high z-index to ensure it's above everything */
+}
+
+.header__logo--mobile {
+  position: relative;
+  z-index: 10003; /* Very high z-index to ensure it's above everything */
+}
+
+.header__logo-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+  z-index: 2;
+  pointer-events: none;
+  display: block;
+}
+
+.header__nav-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  z-index: 1001; /* Above video and other content */
+  /* No isolation - allows blend modes to work */
+}
+
+@media (max-width: 768px) {
+  .header__nav-wrapper {
+    position: relative !important;
+    left: auto !important;
+    transform: none !important;
+  }
+}
+
+.header__nav {
+  display: flex;
+  gap: var(--spacing-md);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header__nav li {
+  list-style: none;
+}
+
+.header__nav-link {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  color: var(--color-secondary); /* White text */
+  transition: none;
+  position: relative;
+  z-index: 1002; /* Above video and other content */
+  /* Inherits blend mode from header */
+}
+
+.header__text-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+  display: block;
+}
+
+.header__nav-link--right .header__text-canvas {
+  top: 0;
+  left: 0;
+}
+
+.header__nav-link--mobile {
+  display: none;
+}
+
+.header__nav-link--right {
+  position: absolute;
+  right: var(--container-padding);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-secondary); /* White text */
+  transition: none;
+  z-index: 1002; /* Above video and other content */
+  display: flex;
+  align-items: center;
+  height: fit-content;
+  /* Inherits blend mode from header */
+}
+
+.header__menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1002; /* Above video and other content */
+}
+
+.header__menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-secondary); /* White */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+  position: relative;
+  z-index: 1002; /* Above video and other content */
+  /* Inherits blend mode from header */
+}
+
+.header__toggle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.header__menu-toggle.active span:nth-child(1) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.header__menu-toggle.active span:nth-child(2) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.header__menu-toggle.active span:nth-child(3) {
+  opacity: 0;
+  visibility: hidden;
+  transform: scaleX(0);
+}
+
+@media (max-width: 768px) {
+  /* Hamburger X should be black when menu is open (on white background) */
+  .header__menu-toggle.active span {
+    background-color: #000000 !important;
+    mix-blend-mode: normal !important;
+  }
+  
+  /* Hamburger should blend when menu is closed */
+  .header__menu-toggle:not(.active) span {
+    mix-blend-mode: exclusion !important;
+  }
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-primary);
+  z-index: 0; /* Lower than header - ensure it's behind */
+  isolation: isolate; /* Prevent mobile Safari flattening */
+}
+
+.hero__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0; /* Base layer */
+}
+
+/* ============================================
+   HERO VIDEO CANVAS (BLEND TARGET)
+   ============================================ */
+
+.hero__video-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* Above video, below overlay */
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1; /* Above video but below header */
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2; /* Above video and overlay but below header */
+  text-align: center;
+  color: var(--color-secondary);
+  padding: var(--container-padding);
+}
+
+.hero__title {
+  font-size: var(--font-size-h1);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--spacing-md);
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.3s forwards;
+}
+
+.hero__title--bold {
+  font-weight: 700;
+  font-style: italic;
+}
+
+.hero__subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   NEWS SECTION
+   ============================================ */
+
+.news {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-secondary);
+}
+
+.news__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.news__title {
+  font-size: var(--font-size-h2);
+  font-weight: 300;
+  margin-bottom: var(--spacing-sm);
+}
+
+.news__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.news-item {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-base);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.news-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.news-item:hover {
+  transform: translateY(-3px);
+}
+
+.news-item__date {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+}
+
+.news-item__title {
+  font-size: var(--font-size-h3);
+  font-weight: 400;
+  margin-bottom: var(--spacing-sm);
+}
+
+.news-item__description {
+  color: var(--color-text-light);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-sm);
+}
+
+.news-item__link {
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: inline-block;
+  transition: transform var(--transition-base);
+}
+
+.news-item__link:hover {
+  transform: translateX(5px);
+  opacity: 1;
+}
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+
+.about {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-secondary);
+}
+
+.about__content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about__title {
+  font-size: var(--font-size-h2);
+  font-weight: 300;
+  margin-bottom: var(--spacing-md);
+}
+
+.about__description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-light);
+}
+
+.about__description--lead {
+  font-size: 1.25rem;
+}
+
+/* ============================================
+   PROJECTS SECTION
+   ============================================ */
+
+.projects {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-secondary);
+}
+
+.projects__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.projects__title {
+  font-size: var(--font-size-h2);
+  font-weight: 300;
+  margin-bottom: var(--spacing-sm);
+}
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+  transition: transform var(--transition-base);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.project-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.project-card:hover .project-card__image {
+  transform: scale(1.05);
+}
+
+.project-card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-md);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: var(--color-secondary);
+  transform: translateY(100%);
+  transition: transform var(--transition-base);
+}
+
+.project-card:hover .project-card__overlay {
+  transform: translateY(0);
+}
+
+.project-card__title {
+  font-size: var(--font-size-h3);
+  margin-bottom: var(--spacing-xs);
+}
+
+.project-card__year {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* ============================================
+   SERVICES SECTION
+   ============================================ */
+
+.services {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-accent);
+}
+
+.services__header {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-xl);
+  text-align: center;
+}
+
+.services__title {
+  font-size: var(--font-size-h2);
+  font-weight: 300;
+  margin-bottom: var(--spacing-md);
+}
+
+.services__description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-light);
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.service-item {
+  padding: var(--spacing-md);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.service-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-item__title {
+  font-size: var(--font-size-h3);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 400;
+}
+
+.service-item__description {
+  color: var(--color-text-light);
+  line-height: 1.7;
+}
+
+/* ============================================
+   CONTACT SECTION
+   ============================================ */
+
+.contact {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-secondary);
+  --contact-photo: none;
+}
+
+.contact--team {
+  padding-top: 0;
+}
+
+.contact__content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact__people {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.contact__people-title {
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(260px, 1.2fr) 1fr;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.contact__bio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.contact__bio--left {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.contact__bio--right {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.contact__bio-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.contact__bio-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-light);
+}
+
+.contact__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background-color: #9fb1b8;
+  background-image: var(--contact-photo);
+  background-size: cover;
+  background-position: center;
+}
+
+.contact__stack {
+  display: none;
+}
+
+.contact__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.contact__photo-slice {
+  height: clamp(180px, 40vw, 260px);
+  background-color: #9fb1b8;
+  background-image: var(--contact-photo);
+  background-size: 200% 100%;
+}
+
+.contact__photo-slice--right {
+  background-position: right center;
+}
+
+.contact__photo-slice--left {
+  background-position: left center;
+}
+
+.contact__bio--mobile-left {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.contact__bio--mobile-right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.contact__title {
+  font-size: var(--font-size-h2);
+  font-weight: 300;
+  margin-bottom: var(--spacing-md);
+}
+
+.contact__description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-xl);
+}
+
+.contact__info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.contact__item {
+  padding: var(--spacing-md);
+}
+
+.contact__item-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-light);
+  font-weight: 500;
+}
+
+.contact__link {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  font-weight: 400;
+  transition: opacity var(--transition-base);
+}
+
+.contact__link:hover {
+  opacity: 0.7;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer {
+  padding: var(--spacing-md) 0 var(--spacing-xs);
+  background-color: #b0c3ca;
+  color: var(--color-primary);
+}
+
+.footer__container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  align-items: start;
+}
+
+.footer__section--center {
+  text-align: center;
+}
+
+.footer__section--right {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer__section-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-sm);
+  opacity: 0.8;
+  color: var(--color-primary);
+}
+
+.footer__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.footer__link {
+  opacity: 0.8;
+  color: var(--color-primary);
+  transition: opacity var(--transition-base);
+}
+
+.footer__link:hover {
+  opacity: 1;
+}
+
+.footer__social {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.footer__social-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.8;
+  transition: opacity var(--transition-base);
+  filter: brightness(0);
+}
+
+.footer__social-icon:hover {
+  opacity: 1;
+}
+
+.footer__certifications {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.footer__cert-logo {
+  height: 40px;
+  width: auto;
+  opacity: 0.9;
+  transition: opacity var(--transition-base);
+}
+
+.footer__cert-logo--nal {
+  height: 55px;
+  margin-left: -15px;
+}
+
+.footer__cert-logo--horisontal {
+  height: 25px;
+}
+
+.footer__cert-logo:hover {
+  opacity: 1;
+}
+
+.footer__copyright {
+  text-align: center;
+  padding-top: var(--spacing-sm);
+  opacity: 0.7;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+  }
+
+  .header__logo--desktop {
+    display: none;
+  }
+
+  .header__logo--mobile {
+    display: block !important;
+    opacity: 1 !important; /* Make sure it's visible */
+    z-index: 10003 !important; /* Very high z-index to ensure it's above everything */
+    position: relative !important;
+    /* Inherits blend mode from header */
+    filter: invert(1) !important; /* Black logo becomes white for exclusion */
+  }
+
+  .header__container {
+    grid-template-columns: 1fr auto;
+  }
+
+  .header__nav-wrapper {
+    grid-column: 2;
+    position: relative !important;
+    left: auto !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 10000;
+    width: auto;
+  }
+  
+  /* Show hamburger button on mobile */
+  .header__menu-toggle {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 10001 !important;
+    width: 30px !important;
+    height: 30px !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 5px !important;
+    cursor: pointer !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 5px !important;
+    margin: 0 !important;
+  }
+  
+  /* Make sure hamburger spans are visible - blend mode handles contrast */
+  .header__menu-toggle span {
+    background-color: #ffffff !important; /* White, blend mode will invert as needed */
+    display: block !important;
+    width: 24px !important;
+    height: 2px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    /* Inherits blend mode from .header__container */
+  }
+  
+  /* Hide desktop nav links on mobile */
+  .header__nav-wrapper .header__nav li {
+    display: none;
+  }
+
+  .header__nav-link--right {
+    display: none;
+  }
+
+  /* Reset desktop nav styles for mobile - show when active */
+  .header__nav-wrapper .header__nav.active,
+  .header__nav-wrapper #navMenu.active {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: #ffffff !important; /* Solid white background */
+    background-color: #ffffff !important; /* Ensure solid white */
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: var(--spacing-xl) !important;
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, visibility 0.4s !important;
+    z-index: 10001 !important; /* Above header */
+    overflow-y: auto !important;
+    margin: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    gap: 0 !important;
+    display: flex !important;
+    mix-blend-mode: normal !important; /* Override blend mode for menu */
+    isolation: isolate !important; /* Create new stacking context - prevents parent blend modes */
+    pointer-events: auto !important; /* Ensure menu is interactive */
+    will-change: transform; /* Optimize rendering */
+  }
+  
+  /* Disable blend mode on header when menu is open */
+  .header:has(.header__nav.active),
+  .header:has(#navMenu.active) {
+    mix-blend-mode: normal !important;
+  }
+  
+  /* Re-enable blend mode for logo and hamburger even when menu is open */
+  .header:has(.header__nav.active) .header__logo-link,
+  .header:has(#navMenu.active) .header__logo-link,
+  .header:has(.header__nav.active) .header__logo--desktop,
+  .header:has(#navMenu.active) .header__logo--desktop,
+  .header:has(.header__nav.active) .header__logo--mobile,
+  .header:has(#navMenu.active) .header__logo--mobile {
+    mix-blend-mode: exclusion !important;
+  }
+  
+  .header:has(.header__nav.active) .header__menu-toggle:not(.active) span,
+  .header:has(#navMenu.active) .header__menu-toggle:not(.active) span {
+    mix-blend-mode: exclusion !important;
+  }
+  
+  /* Ensure header elements outside menu can blend */
+  .header__nav-wrapper:not(:has(.active)) {
+    isolation: auto !important;
+  }
+  
+  /* When menu is active, only disable blend mode for menu items, not header elements */
+  .header__nav.active .header__nav-link,
+  #navMenu.active .header__nav-link {
+    mix-blend-mode: normal !important;
+  }
+  
+  /* When menu is active, hamburger X should be visible (black on white) */
+  .header__menu-toggle.active span {
+    mix-blend-mode: normal !important;
+    background-color: #000000 !important; /* Black X on white background */
+  }
+  
+  /* Menu items should not use blend mode */
+  .header__nav-wrapper .header__nav.active .header__nav-link,
+  .header__nav-wrapper #navMenu.active .header__nav-link {
+    mix-blend-mode: normal !important;
+    color: #000000 !important; /* Black text on white background - use hex for certainty */
+    z-index: 10002 !important;
+    position: relative !important;
+    background: transparent !important; /* Ensure no background blending */
+  }
+  
+  /* Hidden state - menu off screen */
+  .header__nav-wrapper .header__nav:not(.active),
+  .header__nav-wrapper #navMenu:not(.active) {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    transform: translateX(100%) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, visibility 0.4s !important;
+    z-index: 9999 !important;
+    display: flex !important;
+  }
+  
+  /* Show menu items when active */
+  .header__nav-wrapper .header__nav.active li,
+  .header__nav-wrapper #navMenu.active li {
+    display: block !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+  
+
+
+  .header__nav-wrapper .header__nav.active .header__nav-link,
+  .header__nav-wrapper #navMenu.active .header__nav-link {
+    color: var(--color-primary) !important;
+    font-size: clamp(1.5rem, 4vw, 3rem) !important;
+    font-weight: 300 !important;
+    letter-spacing: -0.02em !important;
+    padding: var(--spacing-sm) 0 !important;
+    opacity: 1 !important;
+    animation: fadeInUp 0.6s ease forwards !important;
+    display: block !important;
+    text-transform: none !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .header__nav-wrapper .header__nav.active li:nth-child(1) .header__nav-link,
+  .header__nav-wrapper #navMenu.active li:nth-child(1) .header__nav-link {
+    animation-delay: 0.1s;
+  }
+
+  .header__nav-wrapper .header__nav.active li:nth-child(2) .header__nav-link,
+  .header__nav-wrapper #navMenu.active li:nth-child(2) .header__nav-link {
+    animation-delay: 0.2s;
+  }
+
+  .header__nav-wrapper .header__nav.active li:nth-child(3) .header__nav-link,
+  .header__nav-wrapper #navMenu.active li:nth-child(3) .header__nav-link {
+    animation-delay: 0.3s;
+  }
+
+  .header__nav-link--right {
+    display: none;
+  }
+
+  .header__nav-link--mobile {
+    display: block;
+  }
+  
+
+  .hero {
+    height: 80vh;
+    min-height: 500px;
+  }
+
+  .projects__grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .footer__section--center,
+  .footer__section--right,
+  .footer__copyright {
+    text-align: left;
+  }
+
+  .footer__section--right {
+    justify-content: flex-start;
+    margin-top: var(--spacing-lg); /* Extra space after Follow Us */
+  }
+
+  .footer__social {
+    justify-content: flex-start;
+  }
+
+  .contact__people-title {
+    text-align: left;
+  }
+
+  .contact__grid {
+    display: none;
+  }
+
+  .contact__stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .contact__row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
